@@ -20,7 +20,7 @@ A streamlined, high-level Python framework designed to accelerate the Machine Le
 
 ---
 
-## 🛠️ Structure
+## 📂 Project Structure
 
 my_toolbox_project/
 ├── my_toolbox/                # Main package directory
@@ -31,7 +31,6 @@ my_toolbox_project/
 │   ├── model_utils.py         # Class-based models (Clustering, Classif., etc.)
 │   ├── plot_utils.py          # Visualization logic (t-SNE, Heatmaps, ROC)
 │   └── text_utils.py          # Preprocessor class and Label Encoding
-├── tests/                     # Unit tests (optional but recommended)
 ├── .gitignore                 # Excludes __pycache__, models/, and results/
 ├── pyproject.toml             # Build system and dependencies
 └── README.md                  # Documentation and usage guide

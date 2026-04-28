@@ -21,7 +21,7 @@ A streamlined, high-level Python framework designed to accelerate the Machine Le
 ---
 
 ## 📂 Project Structure
-
+```
 my_toolbox_project/
 ├── my_toolbox/                # Main package directory
 │   ├── __init__.py            # Exports the public API
@@ -34,8 +34,9 @@ my_toolbox_project/
 ├── .gitignore                 # Excludes __pycache__, models/, and results/
 ├── pyproject.toml             # Build system and dependencies
 └── README.md                  # Documentation and usage guide
+```
 
-### File Responsibilities
+#### File Responsibilities
 
 > `debug_utils.py`: It catches nulls, empty strings, and data leakage before you hit model.fit().
 
@@ -48,3 +49,15 @@ my_toolbox_project/
 > `plot_utils.py`: Centralizes all aesthetic choices (color palettes, figure sizes, and axis formatting).
 
 > `metric_utils.py`: It imports functions from plot_utils and model_utils to generate combined artifacts.
+
+---
+
+## 📌 Example 1 main.py for classification
+
+...
+
+---
+
+## 📌 Example 2 main.py for similarity
+
+...

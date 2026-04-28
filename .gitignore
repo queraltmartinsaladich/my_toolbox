@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+dist/
+build/
+*.egg-info/
+
+# Local Artifacts
+models/
+results/
+similarity_results/
+data_health_check.png
+
+# Environments
+.venv/
+env/

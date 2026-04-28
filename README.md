@@ -37,14 +37,14 @@ my_toolbox_project/
 
 ### File Responsibilities
 
-debug_utils.py: Your "First Responder." It catches nulls, empty strings, and data leakage before you hit model.fit().
+> `debug_utils.py`: It catches nulls, empty strings, and data leakage before you hit model.fit().
 
-data_utils.py: Focused on distribution. It calculates word counts, class balances, and length correlations.
+> `data_utils.py`: It calculates word counts, class balances, and length correlations.
 
-text_utils.py: The heavy lifter for strings. Handles Unicode normalization, HTML stripping, and recursive cleaning of JSON/Lists.
+> `text_utils.py`: Handles Unicode normalization, HTML stripping, and recursive cleaning of JSON/Lists.
 
-model_utils.py: Contains the core logic. Decoupled so you can use your own embeddings or the built-in Vectorization class.
+> `model_utils.py`: Decoupled so you can use your own embeddings or the built-in Vectorization class.
 
-plot_utils.py: Centralizes all aesthetic choices (color palettes, figure sizes, and axis formatting).
+> `plot_utils.py`: Centralizes all aesthetic choices (color palettes, figure sizes, and axis formatting).
 
-metric_utils.py: The "Orchestrator." It imports functions from plot_utils and model_utils to generate combined artifacts.
+> `metric_utils.py`: It imports functions from plot_utils and model_utils to generate combined artifacts.

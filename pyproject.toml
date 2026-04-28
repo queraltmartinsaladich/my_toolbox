@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "my_toolbox"
+version = "0.1.0"
+description = "A collection of my favorite helper functions"
+readme = "README.md"
+authors = [{ name = "Queralt Martín-Saladich", email = "queraltmartins@gmail.com" }]
+dependencies = [] # List other libraries your code needs here

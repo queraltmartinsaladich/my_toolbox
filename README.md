@@ -14,7 +14,7 @@ A streamlined, high-level Python framework designed to accelerate the Machine Le
 
 ## 📦 Installation
 
-pip install git+https://github.com/queraltmartinsaladich/my_toolbox.git
-from my_toolbox import *
+```pip install git+https://github.com/queraltmartinsaladich/my_toolbox.git```
+```from my_toolbox import *```
 
 ---

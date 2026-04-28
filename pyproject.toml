@@ -8,4 +8,12 @@ version = "0.1.0"
 description = "A collection of my favorite helper functions"
 readme = "README.md"
 authors = [{ name = "Queralt Martín-Saladich", email = "queraltmartins@gmail.com" }]
-dependencies = [] # List other libraries your code needs here
+dependencies = [
+    "pandas",
+    "seaborn",
+    "matplotlib",
+    "json",
+    "scikit-learn",
+    "numpy",
+    "joblib",
+    "logging"]

@@ -38,33 +38,33 @@ my_toolbox_project/
 
 #### File Responsibilities
 
-> `debug_utils.py`: It catches nulls, empty strings, and data leakage before you hit model.fit().
+`debug_utils.py`: It catches nulls, empty strings, and data leakage before you hit model.fit().
 
-> `data_utils.py`: It calculates word counts, class balances, and length correlations.
+`data_utils.py`: It calculates word counts, class balances, and length correlations.
 
-> `text_utils.py`: Handles Unicode normalization, HTML stripping, and recursive cleaning of JSON/Lists.
+`text_utils.py`: Handles Unicode normalization, HTML stripping, and recursive cleaning of JSON/Lists.
 
-> `model_utils.py`: Decoupled so you can use your own embeddings or the built-in Vectorization class.
+`model_utils.py`: Decoupled so you can use your own embeddings or the built-in Vectorization class.
 
-> `plot_utils.py`: Centralizes all aesthetic choices (color palettes, figure sizes, and axis formatting).
+`plot_utils.py`: Centralizes all aesthetic choices (color palettes, figure sizes, and axis formatting).
 
-> `metric_utils.py`: It imports functions from plot_utils and model_utils to generate combined artifacts.
+`metric_utils.py`: It imports functions from plot_utils and model_utils to generate combined artifacts.
 
 ---
 
-### 💡 How to use (see main.py example below)
+## 💡 How to use (see main.py example below)
 
 1. For CSV/JSON Training (Classification) --> This will run the debug pipeline, clean the text, train the model, and save a full report (images and JSON) in the /results folder.
 
-`python main.py --path data/train.csv --task clf --text review_body --label rating`
+> `python main.py --path data/train.csv --task clf --text review_body --label rating`
 
 2. For Raw Text Discovery (Clustering) --> This will read each line of your .txt file as a document, group them into 5 themes, and print the top words for each.
 
-`python main.py --path data/raw_feedback.txt --task km`
+> `python main.py --path data/raw_feedback.txt --task km`
 
 3. For Similarity Analysis (Duplicates) --> This is great for cleaning a dataset. It will find rows that are almost identical.
 
-`python main.py --path data/corpus.csv --task sim --text content`
+> `python main.py --path data/corpus.csv --task sim --text content`
 
 ### 📌 Example main.py
 

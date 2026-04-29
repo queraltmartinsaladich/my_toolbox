@@ -25,9 +25,9 @@ A streamlined, high-level Python framework designed to accelerate the Machine Le
 my_toolbox_project/
 ├── my_toolbox/                # Main package directory
 │   ├── loaders/               # Loader directory for different input types
-    │   ├── image_loader.py    # Image DataLoader
-    │   ├── table_loader.py    # Table DataLoader
-    │   ├── text_loader.py     # Text DataLoader
+│   │   ├── image_loader.py    # Image DataLoader
+│   │   ├── table_loader.py    # Table DataLoader
+│   │   └── text_loader.py     # Text DataLoader
 │   ├── __init__.py            # Exports the public API
 │   ├── data_utils.py          # EDA and human-readable stats
 │   ├── debug_utils.py         # Pipeline safety and data cleaning

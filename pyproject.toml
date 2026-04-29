@@ -16,4 +16,8 @@ dependencies = [
     "scikit-learn",
     "numpy",
     "joblib",
-    "logging"]
+    "logging",
+    "cv2",
+    "torch",
+    "torchvision",
+    "transformers"]

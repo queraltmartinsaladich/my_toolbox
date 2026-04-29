@@ -1,9 +1,10 @@
 import logging
 import os
-import json
-import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.metrics import classification_report, confusion_matrix, roc_curve, auc
+from sklearn.metrics import confusion_matrix, roc_curve, auc
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.manifold import TSNE
+from scipy.cluster.hierarchy import dendrogram, linkage
 import seaborn as sns
 import numpy as np
 
@@ -54,10 +55,6 @@ def plot_confusion_matrix(y_true, y_pred, classes, save_path):
     plt.close()
     return cm
 
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.manifold import TSNE
-from scipy.cluster.hierarchy import dendrogram, linkage
-
 def plot_similarity_heatmap(matrix, labels, output_dir="results", analysis="test"):
     """Generates a Cosine Similarity Heatmap."""
     sim_matrix = cosine_similarity(matrix)
@@ -96,4 +93,84 @@ def plot_text_dendrogram(matrix, labels, output_dir="results", analysis="test"):
     plt.ylabel("Distance (Ward)")
     plt.tight_layout()
     plt.savefig(os.path.join(output_dir, f"dendogram_{analysis}.png"))
+    plt.close()
+
+def plot_loss_curves(history: dict, save_path: str = "results/loss_curves.png"):
+    """
+    Plots training and validation loss/metrics over epochs.
+    Expects history dict with lists: {'train_loss': [...], 'val_loss': [...]}
+    """
+    epochs = range(1, len(history['train_loss']) + 1)
+    plt.figure(figsize=(10, 6))
+    
+    plt.plot(epochs, history['train_loss'], 'b-', label='Training Loss')
+    if 'val_loss' in history:
+        plt.plot(epochs, history['val_loss'], 'r-', label='Validation Loss')
+    
+    plt.title('Training and Validation Loss')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    
+    # Optional: If you tracked accuracy
+    if 'train_acc' in history:
+        ax2 = plt.gca().twinx()
+        ax2.plot(epochs, history['train_acc'], 'g--', label='Train Acc')
+        if 'val_acc' in history:
+            ax2.plot(epochs, history['val_acc'], 'y--', label='Val Acc')
+        ax2.set_ylabel('Accuracy')
+        ax2.legend(loc='lower left')
+
+    plt.tight_layout()
+    plt.savefig(save_path)
+    plt.close()
+    logger.info(f"Loss curves saved to {save_path}")
+
+def plot_regression_results(y_true, y_pred, save_path: str):
+    """
+    Generates a scatter plot of Actual vs Predicted values with an identity line.
+    Useful for seeing how far off your regression model is.
+    """
+    plt.figure(figsize=(8, 8))
+    plt.scatter(y_true, y_pred, alpha=0.5, color='teal')
+    
+    # Plot Identity Line (Perfect prediction line)
+    max_val = max(max(y_true), max(y_pred))
+    min_val = min(min(y_true), min(y_pred))
+    plt.plot([min_val, max_val], [min_val, max_val], 'r--', lw=2, label="Perfect Fit")
+    
+    plt.xlabel('Actual Values')
+    plt.ylabel('Predicted Values')
+    plt.title('Regression: Actual vs. Predicted')
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.savefig(save_path)
+    plt.close()
+
+def plot_segmentation_sample(image, mask, prediction, save_path: str):
+    """
+    Visualizes the Input Image, Ground Truth Mask, and Model Prediction side-by-side.
+    """
+    fig, ax = plt.subplots(1, 3, figsize=(15, 5))
+    
+    # Standardize image for plotting if it's a tensor (C, H, W) -> (H, W, C)
+    if hasattr(image, 'permute'):
+        image = image.permute(1, 2, 0).cpu().numpy()
+    
+    ax[0].imshow(image)
+    ax[0].set_title("Input Image")
+    ax[0].axis('off')
+    
+    ax[1].imshow(mask, cmap='gray')
+    ax[1].set_title("Ground Truth Mask")
+    ax[1].axis('off')
+    
+    ax[2].imshow(prediction, cmap='gray')
+    ax[2].set_title("Model Prediction")
+    ax[2].axis('off')
+    
+    plt.tight_layout()
+    plt.savefig(save_path)
     plt.close()

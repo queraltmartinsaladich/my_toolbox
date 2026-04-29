@@ -46,9 +46,9 @@ my_toolbox_project/
 └── README.md                  # Documentation and usage guide
 ```
 
-#### File Responsibilities
+### File Responsibilities
 
-- LOADERS
+**- LOADERS**
 
 `image_loader.py`: A specialized PyTorch Dataset that standardizes image ingestion. It handles conversion from HWC (OpenCV) to CHW (Torch), standardizes color spaces (RGB/Grayscale), and ensures that masks and images are transformed identically during augmentation.
 
@@ -56,27 +56,27 @@ my_toolbox_project/
 
 `text_loader.py`: A wrapper for Hugging Face tokenizers. It transforms raw strings into the token IDs and attention masks required for Transformer-based models.
 
-- CORE MODULES
+**- CORE MODULES**
 
-cluster_utils.py: High-level grouping logic. It identifies optimal cluster counts via Elbow/Silhouette analysis and interprets clusters by extracting significant keywords or centroids.
+`cluster_utils.py`: High-level grouping logic. It identifies optimal cluster counts via Elbow/Silhouette analysis and interprets clusters by extracting significant keywords or centroids.
 
-data_utils.py: The EDA (Exploratory Data Analysis) engine. It provides human-readable statistics, such as class balance reports, word count distributions, and feature correlations.
+`data_utils.py`: The EDA (Exploratory Data Analysis) engine. It provides human-readable statistics, such as class balance reports, word count distributions, and feature correlations.
 
-debug_utils.py: The pipeline safety net. It identifies and sanitizes data corruption (nulls, infinite values, empty strings) and checks for data leakage between train/test splits.
+`debug_utils.py`: The pipeline safety net. It identifies and sanitizes data corruption (nulls, infinite values, empty strings) and checks for data leakage between train/test splits.
 
-deep_learning.py: The Neural Engine. It encapsulates the DeepPipeline class, managing the training loops, GPU/CUDA device placement, and the interface for Hugging Face AutoModels.
+`deep_learning.py`: The Neural Engine. It encapsulates the DeepPipeline class, managing the training loops, GPU/CUDA device placement, and the interface for Hugging Face AutoModels.
 
-loading_utils.py: The file I/O layer. It standardizes the ingestion of .csv, .json, and .txt files to ensure they are presented to the loaders in a consistent format.
+`loading_utils.py`: The file I/O layer. It standardizes the ingestion of .csv, .json, and .txt files to ensure they are presented to the loaders in a consistent format.
 
-metric_utils.py: The Reporter. It calculates mathematical performance (F1, IoU, MAE) and aggregates them with feature importance data to generate combined JSON and text artifacts.
+`metric_utils.py`: The Reporter. It calculates mathematical performance (F1, IoU, MAE) and aggregates them with feature importance data to generate combined JSON and text artifacts.
 
-model_utils.py: The Classical Engine. It houses the Classification, Regression, and Similarity classes. It is decoupled to allow seamless switching between TF-IDF vectorization and custom embeddings.
+model_utils.py`: The Classical Engine. It houses the Classification, Regression, and Similarity classes. It is decoupled to allow seamless switching between TF-IDF vectorization and custom embeddings.
 
-other_utils.py: Quality of Life (QoL) utilities. Contains execution timers (@time_it), hardware/system auditors, and YAML/JSON configuration loaders.
+`other_utils.py`: Quality of Life (QoL) utilities. Contains execution timers (@time_it), hardware/system auditors, and YAML/JSON configuration loaders.
 
-plot_utils.py: The Artist. Centralizes all visual logic, from ROC curves and Confusion Matrices to t-SNE projections and segmentation side-by-side comparisons.
+`plot_utils.py`: The Artist. Centralizes all visual logic, from ROC curves and Confusion Matrices to t-SNE projections and segmentation side-by-side comparisons.
 
-text_utils.py: The Preprocessor. Manages the "dirty work" of NLP, including Unicode normalization, HTML stripping, stop-word removal, and label encoding.
+`text_utils.py`: The Preprocessor. Manages the "dirty work" of NLP, including Unicode normalization, HTML stripping, stop-word removal, and label encoding.
 
 ---
 

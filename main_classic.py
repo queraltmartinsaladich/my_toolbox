@@ -1,3 +1,30 @@
+"""
+CLASSICAL MACHINE LEARNING ORCHESTRATOR (main_classic.py)
+--------------------------------------------------------
+Purpose:
+    Command-line interface for traditional Machine Learning workflows. 
+    Handles Tabular data and NLP using Scikit-Learn.
+
+Key Capabilities:
+    - Text Processing: TF-IDF Vectorization for NLP tasks.
+    - Tabular Processing: Direct feature engineering from CSV/JSON.
+    - Tasks: Classification (Logistic Regression), Regression (Ridge), 
+      Similarity Analysis (Cosine), and Clustering (K-Means).
+
+Input Requirements:
+    - A dataset file (.csv, .json, or .txt).
+    - Specified target column for supervised tasks (clf/reg).
+    - Specified text column for NLP-based tasks.
+
+Usage Examples:
+    Classification: python main_classic.py --path data.csv --task clf --target label --vectorize
+    Similarity:     python main_classic.py --path docs.txt --task sim
+    Clustering:     python main_classic.py --path data.csv --task km --target cluster
+
+Dependencies:
+    pandas, numpy, scikit-learn, joblib
+"""
+
 import argparse
 import logging
 import os

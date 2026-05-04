@@ -144,7 +144,7 @@ _Hardware: Optimized for GPU._
 
 Input: Provide a file path (CSV/JSON/TXT) containing your features.
 
-Loading: main_(deep/classic).py calls ToolboxDataLoader, selecting the correct specialized loader (image, text, or table).
+Loading: main_(deep/classic).py selects the correct specialized loader (image, text, or table).
 
 Validation: debug_utils.py audits the data for nulls or leakage before tensors hit the model.
 

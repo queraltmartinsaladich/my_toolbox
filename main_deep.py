@@ -55,7 +55,7 @@ def run_deep_pipeline(args):
             
         # 2. Split Data
         # Use stratification only for classification tasks
-        strat = df[args.label] if args.task == 'classification' and args.label in df.columns else None
+        strat = df[args.label] if args.task == 'clf' and args.label in df.columns else None
         train_df, val_df = train_test_split(df, test_size=0.2, stratify=strat, random_state=42)
 
         # 3. Initialize Pipeline (Model + Device + Tokenizer)
@@ -122,11 +122,11 @@ def run_deep_pipeline(args):
         y_true = torch.cat(all_trues).numpy()
         y_pred = torch.cat(all_preds).numpy()
 
-        if args.task == "classification":
+        if args.task == "clf":
             full_classification_metrics(y_true, y_pred, analysis="deep_run")
-        elif args.task == "regression":
+        elif args.task == "reg":
             full_regression_metrics(y_true, y_pred, analysis="deep_run")
-        elif args.task == "segmentation":
+        elif args.task == "seg":
             segmentation_metrics(sample_true, sample_pred, image=sample_img, analysis="deep_run")
 
         # 8. Save Model
@@ -141,7 +141,7 @@ if __name__ == "__main__":
     # Data Args
     parser.add_argument('--path', type=str, required=True, help="Path to manifest CSV")
     parser.add_argument('--type', type=str, choices=['image', 'text'], required=True)
-    parser.add_argument('--task', type=str, choices=['classification', 'regression', 'segmentation'], required=True)
+    parser.add_argument('--task', type=str, choices=['clf', 'reg', 'seg'], required=True)
     
     # Model Args
     parser.add_argument('--model', type=str, required=True, help="Hugging Face string or local model path")

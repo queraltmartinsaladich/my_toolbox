@@ -89,13 +89,13 @@ The toolbox is split into two primary execution engines depending on your data t
 _Best for: Tabular data, small-to-medium text datasets, and quick statistical analysis._
 _Hardware: Optimized for CPU._
 
-<u> Args for main_classic.py: </u>
+- Args for main_classic.py:
 
-> data_path: Path to CSV, JSON, or TXT file
-> task: Classification 'clf', Regression 'reg', Similarity 'sim', K-means clustering 'km'
-> text_col: Column name for text
-> label_col: Column name for target
-> subset: Process only N (subset) samples
+> data_path: Path to CSV, JSON, or TXT file <br>
+> task: Classification 'clf', Regression 'reg', Similarity 'sim', K-means clustering 'km' <br>
+> text_col: Column name for text <br>
+> label_col: Column name for target <br>
+> subset: Process only N (subset) samples <br>
 
 **Text Classification (TF-IDF + Logistic Regression):**
 
@@ -113,6 +113,18 @@ _Hardware: Optimized for CPU._
 
 _Best for: Computer Vision, Transformer-based NLP, and high-dimensional patterns._
 _Hardware: Optimized for GPU._
+
+- Args for main_deep.py:
+
+> data_path: Path to CSV, JSON, or TXT file <br>
+> type: 'image' or 'text' <br>
+> task: Classification 'clf', Regression 'reg', Segmentation 'seg' <br>
+> model: Hugging Face string or local model path <br>
+> epochs: Number of epochs <br>
+> lr: Learning rate <br>
+> batch: Number of samples in batch <br>
+> label: Column name for target <br>
+> subset: Process only N (subset) samples <br>
 
 **Image Segmentation (U-Net/ResNet):**
 

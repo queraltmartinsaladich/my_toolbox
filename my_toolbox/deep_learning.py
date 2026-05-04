@@ -11,12 +11,12 @@ from transformers import AutoModel, AutoTokenizer, get_scheduler
 # if __name__ == "__main__":
 
 #     # 1. Initialize with Hugging Face (e.g., for Text)
-#     # pipeline = DeepPipeline("distilbert-base-uncased", task="classification")
+#     # pipeline = DeepPipeline("distilbert-base-uncased", task="clf")
 #     # loader = ToolboxDataLoader.get_loader(..., tokenizer=pipeline.get_tokenizer())
 #
 #     # 2. Initialize with Custom Torch Model (e.g., for Images)
 #     # my_model = MyCNN()
-#     # pipeline = DeepPipeline(my_model, task="classification")
+#     # pipeline = DeepPipeline(my_model, task="clf")
 #     # pipeline.fit(train_loader, epochs=10)
 
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
@@ -28,7 +28,7 @@ class DeepPipeline:
     Supports Classification, Regression, and Segmentation.
     Integrates with Hugging Face and custom PyTorch models.
     """
-    def __init__(self, model_name_or_obj: Union[nn.Module, str], task: str = "classification"):
+    def __init__(self, model_name_or_obj: Union[nn.Module, str], task: str = "clf"):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.task = task
         self.tokenizer = None
@@ -115,11 +115,11 @@ class DeepPipeline:
             num_training_steps=num_steps)
         
         # Automatic Criterion Selection based on task
-        if self.task == "classification":
+        if self.task == "clf":
             criterion = nn.CrossEntropyLoss()
-        elif self.task == "regression":
+        elif self.task == "reg":
             criterion = nn.MSELoss()
-        elif self.task == "segmentation":
+        elif self.task == "seg":
             criterion = nn.BCEWithLogitsLoss()
         else:
             raise ValueError(f"Task '{self.task}' is not supported by the DeepPipeline.")

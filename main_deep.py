@@ -38,8 +38,7 @@ from my_toolbox import (
     DeepPipeline, 
     full_classification_metrics, 
     full_regression_metrics, 
-    segmentation_metrics
-)
+    segmentation_metrics)
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')

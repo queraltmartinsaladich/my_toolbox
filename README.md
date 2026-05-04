@@ -58,25 +58,25 @@ my_toolbox_project/
 
 **- CORE MODULES**
 
-`cluster_utils.py`: High-level grouping logic. It identifies optimal cluster counts via Elbow/Silhouette analysis and interprets clusters by extracting significant keywords or centroids.
+`cluster_utils.py`: It identifies optimal cluster counts via Elbow/Silhouette analysis and interprets clusters by extracting significant keywords or centroids.
 
-`data_utils.py`: The EDA (Exploratory Data Analysis) engine. It provides human-readable statistics, such as class balance reports, word count distributions, and feature correlations.
+`data_utils.py`: It provides human-readable statistics, such as class balance reports, word count distributions, and feature correlations.
 
-`debug_utils.py`: The pipeline safety net. It identifies and sanitizes data corruption (nulls, infinite values, empty strings) and checks for data leakage between train/test splits.
+`debug_utils.py`: It identifies and sanitizes data corruption (nulls, infinite values, empty strings) and checks for data leakage between train/test splits.
 
-`deep_learning.py`: The Neural Engine. It encapsulates the DeepPipeline class, managing the training loops, GPU/CUDA device placement, and the interface for Hugging Face AutoModels.
+`deep_learning.py`: It encapsulates the DeepPipeline class, managing the training loops, GPU/CUDA device placement, and the interface for Hugging Face AutoModels.
 
-`loading_utils.py`: The file I/O layer. It standardizes the ingestion of .csv, .json, and .txt files to ensure they are presented to the loaders in a consistent format.
+`loading_utils.py`: It standardizes the ingestion of .csv, .json, and .txt files to ensure they are presented to the loaders in a consistent format.
 
-`metric_utils.py`: The Reporter. It calculates mathematical performance (F1, IoU, MAE) and aggregates them with feature importance data to generate combined JSON and text artifacts.
+`metric_utils.py`: It calculates mathematical performance (F1, IoU, MAE) and aggregates them with feature importance data to generate combined JSON and text artifacts.
 
-model_utils.py`: The Classical Engine. It houses the Classification, Regression, and Similarity classes. It is decoupled to allow seamless switching between TF-IDF vectorization and custom embeddings.
+model_utils.py`: It houses the Classification, Regression, and Similarity classes. It is decoupled to allow seamless switching between TF-IDF vectorization and custom embeddings.
 
-`other_utils.py`: Quality of Life (QoL) utilities. Contains execution timers (@time_it), hardware/system auditors, and YAML/JSON configuration loaders.
+`other_utils.py`: Contains execution timers (@time_it), hardware/system auditors, and YAML/JSON configuration loaders.
 
-`plot_utils.py`: The Artist. Centralizes all visual logic, from ROC curves and Confusion Matrices to t-SNE projections and segmentation side-by-side comparisons.
+`plot_utils.py`: Centralizes all visual logic, from ROC curves and Confusion Matrices to t-SNE projections and segmentation side-by-side comparisons.
 
-`text_utils.py`: The Preprocessor. Manages the "dirty work" of NLP, including Unicode normalization, HTML stripping, stop-word removal, and label encoding.
+`text_utils.py`: Manages the "dirty work" of NLP, including Unicode normalization, HTML stripping, stop-word removal, and label encoding.
 
 ---
 
@@ -88,6 +88,14 @@ The toolbox is split into two primary execution engines depending on your data t
 
 _Best for: Tabular data, small-to-medium text datasets, and quick statistical analysis._
 _Hardware: Optimized for CPU._
+
+<u> Args for main_classic.py: </u>
+
+> data_path: Path to CSV, JSON, or TXT file
+> task: Classification 'clf', Regression 'reg', Similarity 'sim', K-means clustering 'km'
+> text_col: Column name for text
+> label_col: Column name for target
+> subset: Process only N (subset) samples
 
 **Text Classification (TF-IDF + Logistic Regression):**
 
@@ -104,7 +112,7 @@ _Hardware: Optimized for CPU._
 #### 2. Deep Learning Pipeline (main_deep.py)
 
 _Best for: Computer Vision, Transformer-based NLP, and high-dimensional patterns._
-_Hardware: Optimized for GPU (CUDA)._
+_Hardware: Optimized for GPU._
 
 **Image Segmentation (U-Net/ResNet):**
 
@@ -122,14 +130,12 @@ _Hardware: Optimized for GPU (CUDA)._
 
 ### 🛠 Project Architecture Flow
 
-Input: Provide a Manifest (CSV/JSON) containing paths to raw files or tabular features.
+Input: Provide a file path (CSV/JSON/TXT) containing your features.
 
-Loading: main_*.py calls ToolboxDataLoader, selecting the correct specialized loader (image, text, or table).
+Loading: main_(deep/classic).py calls ToolboxDataLoader, selecting the correct specialized loader (image, text, or table).
 
 Validation: debug_utils.py audits the data for nulls or leakage before tensors hit the model.
 
-Modeling: * main_classic uses class-based models from model_utils.py.
-
-main_deep uses the DeepPipeline engine from deep_learning.py.
+Modeling: main_classic.py uses class-based models from model_utils.py. main_deep.py uses the deep learning engine from deep_learning.py.
 
 Output: metric_utils.py aggregates scores while plot_utils.py generates visual artifacts (ROC, Heatmaps, IoU samples) in the /results directory.

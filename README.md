@@ -128,15 +128,15 @@ _Hardware: Optimized for GPU._
 
 **Image Segmentation (U-Net/ResNet):**
 
-`python main_deep.py --path manifest.csv --type image --task segmentation --model resnet50 --batch 4`
+`python main_deep.py --path manifest.csv --type image --task seg --model resnet50 --batch 4`
 
 **Transformer Text Classification (BERT/DistilBERT):**
 
-`python main_deep.py --path tweets.csv --type text --task classification --model distilbert-base-uncased --epochs 3`
+`python main_deep.py --path tweets.csv --type text --task clf --model distilbert-base-uncased --epochs 3`
 
 **Custom Torch Models:**
 
-`python main_deep.py --path custom_data.csv --type image --task classification --model ./models/my_custom_architecture.pt`
+`python main_deep.py --path custom_data.csv --type image --task clf --model ./models/my_custom_architecture.pt`
 
 ---
 

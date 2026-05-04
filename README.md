@@ -93,21 +93,21 @@ _Hardware: Optimized for CPU._
 
 > data_path: Path to CSV, JSON, or TXT file <br>
 > task: Classification 'clf', Regression 'reg', Similarity 'sim', K-means clustering 'km' <br>
-> text_col: Column name for text <br>
-> label_col: Column name for target <br>
+> text: Column name for text <br>
+> label: Column name for target <br>
 > subset: Process only N (subset) samples <br>
 
 **Text Classification (TF-IDF + Logistic Regression):**
 
-`python main_classic.py --path data.csv --task clf --target label --text_col review_text --vectorize`
+`python main_classic.py --path data.csv --task clf --label label --text text`
 
 **Tabular Regression (Ridge):**
 
-`python main_classic.py --path housing.csv --task reg --target price`
+`python main_classic.py --path housing.csv --task reg --label price`
 
 **Similarity & Clustering:**
 
-`python main_classic.py --path documents.json --task sim --text_col content`
+`python main_classic.py --path documents.json --task sim --text content`
 
 #### 2. Deep Learning Pipeline (main_deep.py)
 
@@ -132,11 +132,11 @@ _Hardware: Optimized for GPU._
 
 **Transformer Text Classification (BERT/DistilBERT):**
 
-`python main_deep.py --path tweets.csv --type text --task clf --model distilbert-base-uncased --epochs 3`
+`python main_deep.py --path tweets.csv --type text --task clf --model distilbert-base --epochs 3`
 
 **Custom Torch Models:**
 
-`python main_deep.py --path custom_data.csv --type image --task clf --model ./models/my_custom_architecture.pt`
+`python main_deep.py --path custom_data.csv --type image --task clf --model my_model.pt`
 
 ---
 
